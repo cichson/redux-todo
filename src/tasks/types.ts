@@ -8,25 +8,13 @@ export interface ITask {
   name: string;
 }
 
-export interface ITaskPair {
-  id: string;
-  domain: string;
-  range: string;
-}
-
-export interface ITaskPairSaveItem extends ITaskPair {
-  taskId: string;
-}
-
 export interface TaskState {
   tasks: ITask[];
   currentTask?: ITaskItem[];
-  editState?: ITaskPair[];
 }
 
 export interface ITaskItem {
-  dict: ITask;
-  pair: ITaskPair;
+  task: ITask;
 }
 
 /* Action Constants */

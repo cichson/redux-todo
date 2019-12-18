@@ -9,6 +9,4 @@ const task = (state: RootState) =>
     ...pair
   }));
 
-const editState = (state: RootState) => state.taskReducer.editState || [];
-
-export { tasks, task, editState };
+export { tasks, task };
