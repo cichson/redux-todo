@@ -14,6 +14,7 @@ const editTaskAction = (task: ITask) => action(Task.EDIT_TASK, task);
 const addTaskWithImage: Epic<RootAction, RootAction, RootState> = action$ =>
   action$.pipe(
     filter(isActionOf(addTaskAction)),
+    delay(1000),
     mapTo(addTaskAction)
 ); */
 
