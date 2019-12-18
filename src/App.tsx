@@ -26,13 +26,15 @@ import { ITask } from "./tasks/types";
 
 const App: React.FC = () => {
   const [addTask, setAddTask] = useState(false);
+  const [editTask, setEditTask] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [TaskName, setTaskName] = useState("");
   const [TaskId, setTaskId] = useState("");
-  const [editTask, setEditTask] = useState(false);
   const dicts = useSelector(tasks);
   const dispatch = useDispatch();
 
   const handleAddTask = (event: React.MouseEvent<HTMLElement>) => {
+    setIsLoading(true);
     if (TaskName !== "") {
       dispatch(
         addTaskAction({
@@ -43,8 +45,12 @@ const App: React.FC = () => {
     }
     setAddTask(false);
     setTaskName("");
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
   const handleEditTask = (event: React.MouseEvent<HTMLElement>) => {
+    setIsLoading(true);
     if (TaskName !== "") {
       dispatch(
         editTaskAction({
@@ -55,10 +61,17 @@ const App: React.FC = () => {
     }
     setEditTask(false);
     setTaskName("");
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
 
   const handleDeleteTask = (item: ITask) => {
+    setIsLoading(true);
     dispatch(removeTaskAction(item));
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
 
   const ListHeaderComponent = (
@@ -109,6 +122,26 @@ const App: React.FC = () => {
           TODO List
         </Typography.Title>
       </Layout.Header>
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            width: 200,
+            top: 200,
+            left: "calc( 50% - 100px )",
+            textAlign: "center",
+            padding: 50,
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 5,
+            borderRadius: 10,
+            color: "white",
+            fontWeight: "bold"
+          }}
+        >
+          Loading...
+        </div>
+      )}
+
       <Layout.Content style={{ background: "white", padding: 25 }}>
         <React.Fragment>
           <Row type="flex" justify="center">
