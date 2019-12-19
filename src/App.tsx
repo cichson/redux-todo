@@ -145,7 +145,7 @@ const App: React.FC = () => {
       <Layout.Content style={{ background: "white", padding: 25 }}>
         <React.Fragment>
           <Row type="flex" justify="center">
-            <Col span={12}>
+            <Col span={24} xs={24} md={24} xl={18} xxl={12}>
               <List
                 bordered
                 header={ListHeaderComponent}
